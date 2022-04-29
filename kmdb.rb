@@ -79,12 +79,192 @@ Role.destroy_all
 # Generate models and tables, according to the domain model.
 # TODO!
 
-
-
+# Created models and tables according to the domain model.
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
 # TODO!
+
+# Insert data into the database for studios.
+
+puts "There are #{Studio.all.count} studios."
+studio = Studio.new
+studio["name"] = "Warner Bros."
+studio.save
+puts "There are #{Studio.all.count} studios."
+
+# Insert data into the database for movies.
+
+puts "There are #{Movie.all.count} movies."
+
+warner_bros = Studio.find_by({"name" => "Warner Bros."})
+
+movie = Movie.new
+movie["title"] = "Batman Begins"
+movie["year_released"] = 2005
+movie["rated"] = "PG-13"
+movie["studio_id"] = warner_bros["id"]
+movie.save
+
+puts "There are #{Movie.all.count} movies."
+
+movie = Movie.new
+movie["title"] = "The Dark Knight"
+movie["year_released"] = 2008 # should this be in "" or not
+movie["rated"] = "PG-13"
+movie["studio_id"] = warner_bros["id"]
+movie.save
+
+puts "There are #{Movie.all.count} movies."
+
+movie = Movie.new
+movie["title"] = "The Dark Knight Rises"
+movie["year_released"] = 2012
+movie["rated"] = "PG-13"
+movie["studio_id"] = warner_bros["id"]
+movie.save
+
+puts "There are #{Movie.all.count} movies."
+
+# Insert data into the database for actors and roles.
+
+# Batman Begins
+batman_begins = Movie.find_by({"title" => "Batman Begins"})
+
+puts "There are #{Actor.all.count} actors."
+
+actor = Actor.new
+actor["name"] = "Christian Bale"
+actor.save
+puts "There are #{Actor.all.count} actors."
+
+actor = Actor.new
+actor["name"] = "Michael Caine"
+actor.save
+puts "There are #{Actor.all.count} actors."
+
+actor = Actor.new
+actor["name"] = "Liam Neeson"
+actor.save
+puts "There are #{Actor.all.count} actors."
+
+actor = Actor.new
+actor["name"] = "Katie Holmes"
+actor.save
+puts "There are #{Actor.all.count} actors."
+
+actor = Actor.new
+actor["name"] = "Gary Oldman"
+actor.save
+puts "There are #{Actor.all.count} actors."
+
+christian_bale = Actor.find_by({"name" => "Christian Bale"})
+michael_caine = Actor.find_by({"name" => "Michael Caine"})
+liam_neeson = Actor.find_by({"name" => "Liam Neeson"})
+katie_holmes = Actor.find_by({"name" => "Katie Holmes"})
+gary_oldman = Actor.find_by({"name" => "Gary Oldman"})
+
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = batman_begins["id"]
+role["actor_id"] = christian_bale["id"]
+role["character_name"] = "Bruce Wayne"
+role.save
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = batman_begins["id"]
+role["actor_id"] = michael_caine["id"]
+role["character_name"] = "Alfred"
+role.save
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = batman_begins["id"]
+role["actor_id"] = liam_neeson["id"]
+role["character_name"] = "Ra's Al Ghul"
+role.save
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = batman_begins["id"]
+role["actor_id"] = katie_holmes["id"]
+role["character_name"] = "Rachel Dawes"
+role.save
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = batman_begins["id"]
+role["actor_id"] = gary_oldman["id"]
+role["character_name"] = "Commissioner Gordon"
+role.save
+puts "There are #{Role.all.count} roles."
+
+# Dark Knight
+dark_knight = Movie.find_by({"title" => "The Dark Knight"})
+
+puts "There are #{Actor.all.count} actors."
+
+actor = Actor.new
+actor["name"] = "Heath Ledger"
+actor.save
+puts "There are #{Actor.all.count} actors."
+
+actor = Actor.new
+actor["name"] = "Aaron Eckhart"
+actor.save
+puts "There are #{Actor.all.count} actors."
+
+actor = Actor.new
+actor["name"] = "Maggie Gyllenhaal"
+actor.save
+puts "There are #{Actor.all.count} actors."
+
+heath_ledger = Actor.find_by({"name" => "Heath Ledger"})
+aaron_eckhart = Actor.find_by({"name" => "Aaron Eckhart"})
+maggie_gyllenhaal = Actor.find_by({"name" => "Maggie Gyllenhaal"})
+
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = dark_knight["id"]
+role["actor_id"] = christian_bale["id"]
+role["character_name"] = "Bruce Wayne"
+role.save
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = dark_knight["id"]
+role["actor_id"] = heath_ledger["id"]
+role["character_name"] = "Joker"
+role.save
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = dark_knight["id"]
+role["actor_id"] = aaron_eckhart["id"]
+role["character_name"] = "Harvey Dent"
+role.save
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = dark_knight["id"]
+role["actor_id"] = michael_caine["id"]
+role["character_name"] = "Alfred"
+role.save
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = dark_knight["id"]
+role["actor_id"] = maggie_gyllenhaal["id"]
+role["character_name"] = "Rachel Dawes"
+role.save
+puts "There are #{Role.all.count} roles."
+
+# Dark Knight Rises
+dark_knight_rises = Movie.find_by({"title" => "Dark Knight Rises"})
+
 
 # Prints a header for the movies output
 puts "Movies"
