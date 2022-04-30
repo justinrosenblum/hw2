@@ -263,8 +263,65 @@ role.save
 puts "There are #{Role.all.count} roles."
 
 # Dark Knight Rises
-dark_knight_rises = Movie.find_by({"title" => "Dark Knight Rises"})
+dark_knight_rises = Movie.find_by({"title" => "The Dark Knight Rises"})
 
+puts "There are #{Actor.all.count} actors."
+
+actor = Actor.new
+actor["name"] = "Tom Hardy"
+actor.save
+puts "There are #{Actor.all.count} actors."
+
+actor = Actor.new
+actor["name"] = "Joseph Gordon-Levitt"
+actor.save
+puts "There are #{Actor.all.count} actors."
+
+actor = Actor.new
+actor["name"] = "Anne Hathaway"
+actor.save
+puts "There are #{Actor.all.count} actors."
+
+tom_hardy = Actor.find_by({"name" => "Tom Hardy"})
+joseph_gordon_levitt = Actor.find_by({"name" => "Joseph Gordon-Levitt"})
+anne_hathaway = Actor.find_by({"name" => "Anne Hathaway"})
+
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = dark_knight_rises["id"]
+role["actor_id"] = christian_bale["id"]
+role["character_name"] = "Bruce Wayne"
+role.save
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = dark_knight_rises["id"]
+role["actor_id"] = gary_oldman["id"]
+role["character_name"] = "Commissioner Gordon"
+role.save
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = dark_knight_rises["id"]
+role["actor_id"] = tom_hardy["id"]
+role["character_name"] = "Bane"
+role.save
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = dark_knight_rises["id"]
+role["actor_id"] = joseph_gordon_levitt["id"]
+role["character_name"] = "John Blake"
+role.save
+puts "There are #{Role.all.count} roles."
+
+role = Role.new
+role["movie_id"] = dark_knight_rises["id"]
+role["actor_id"] = anne_hathaway["id"]
+role["character_name"] = "Selina Kyle"
+role.save
+puts "There are #{Role.all.count} roles."
 
 # Prints a header for the movies output
 puts "Movies"
@@ -274,11 +331,24 @@ puts ""
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
 
+movies = Movie.all
+
+for movie in movies
+    puts "#{movie["title"]} #{movie["year_released"]} #{movie["rated"]} #{movie["studio_id"]}"
+end
+
 # Prints a header for the cast output
 puts ""
 puts "Top Cast"
 puts "========"
 puts ""
 
+
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+
+roles = Role.all
+
+for role in roles
+    puts "#{role["movie_id"]} #{role["actor_id"]} #{role["character_name"]}"
+end
