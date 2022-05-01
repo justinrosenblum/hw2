@@ -323,6 +323,13 @@ role["character_name"] = "Selina Kyle"
 role.save
 puts "There are #{Role.all.count} roles."
 
+# Prints a header that says above is where I checked my work
+puts "======"
+puts ""
+puts "Above this is where I checked my work as I went through the assignment"
+puts "======"
+puts ""
+
 # Prints a header for the movies output
 puts "Movies"
 puts "======"
